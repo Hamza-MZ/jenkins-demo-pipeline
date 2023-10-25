@@ -1,36 +1,36 @@
 pipeline {
-
     agent any
-    environment { 
-        PATH = "/root/apictl:$PATH"
+    environment {
+        PATH = "C:\\Services\\apictl-4.1.1-windows-x64\\apictl;%PATH%"
     }
     options {
-        buildDiscarder logRotator( 
-                    daysToKeepStr: '16', 
-                    numToKeepStr: '10'
-            )
+        buildDiscarder logRotator(
+            daysToKeepStr: '16',
+            numToKeepStr: '10'
+        )
     }
 
     stages {
-
         stage('Setup Environment for APICTL') {
             steps {
-                sh """#!/bin/bash
-                ENVCOUNT=\$(apictl list envs --format {{.}} | wc -l)
-                if [ "\$ENVCOUNT" == "0" ]; then
+                bat '''
+                SETLOCAL EnableDelayedExpansion
+                FOR /F %%A IN ('apictl list envs --format {{.}} ^| find /c /v ""') DO SET ENVCOUNT=%%A
+                IF !ENVCOUNT! EQU 0 (
                     apictl add-env -e live --apim https://localhost:9447
-                fi
-                """
+                )
+                ENDLOCAL
+                '''
             }
         }
 
         stage('Deploy APIs To "Live" Environment') {
             steps {
-                sh """
+                bat '''
                 apictl login live -u admin -p admin
                 apictl vcs deploy -e live
-                """
+                '''
             }
         }
-    }   
+    }
 }
