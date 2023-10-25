@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PATH = "C:\Windows\System32\cmd.exe;%PATH%"
+        PATH = "C:\\Windows\\System32\\cmd.exe;%PATH%"
     }
     options {
         buildDiscarder logRotator(
