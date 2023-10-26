@@ -2,7 +2,7 @@ pipeline {
 
     agent any
     environment { 
-        PATH = "/root/apictl:$PATH"
+        PATH = "/home/hamza/.wso2apictl:$PATH"
     }
     options {
         buildDiscarder logRotator( 
