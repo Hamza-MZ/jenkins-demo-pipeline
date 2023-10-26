@@ -16,12 +16,6 @@ pipeline {
         stage('Setup Environment for APICTL') {
             steps {
                 sh """#!/bin/bash
-                  pwd
-                 whoami
-                sudo su
-                 whoami
-                cd /home/hamza/apictl
-                pwd
                 ENVCOUNT=\$(./apictl list envs --format {{.}} | wc -l)
                 if [ "\$ENVCOUNT" == "0" ]; then
                     apictl add-env -e live --apim https://172.20.138.214:9447
