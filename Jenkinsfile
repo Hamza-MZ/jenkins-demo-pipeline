@@ -27,11 +27,11 @@ pipeline {
 
     stage('Deploy APIs To "Live" Environment') {
       steps {
-        cd /var/jenkins/workspace/jenkins-demo-pipeline
         sh """
-                apictl login live -u admin -p admin -k
-                apictl set --vcs-source-repo-path https://github.com/Hamza-MZ/jenkins-demo-pipeline -k
-                apictl vcs deploy -e live -k
+        cd /var/jenkins/workspace/jenkins-demo-pipeline
+        apictl login live -u admin -p admin -k
+        apictl set --vcs-source-repo-path https://github.com/Hamza-MZ/jenkins-demo-pipeline -k
+        apictl vcs deploy -e live -k
                 """
         
       }
