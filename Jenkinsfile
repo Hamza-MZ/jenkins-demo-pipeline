@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment { 
         // Set the full path to the directory containing apictl
-        APIC_TOOL_DIR = "/home/hamza/apictl"
+        APIC_TOOL_DIR = "/root/apictl"
         PATH = "${APIC_TOOL_DIR}:${PATH}"
     }
     options {
