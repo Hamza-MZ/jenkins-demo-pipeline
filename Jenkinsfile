@@ -16,6 +16,7 @@ pipeline {
         stage('Setup Environment for APICTL') {
             steps {
                 sh """#!/bin/bash
+                  pwd
                 sh 'cd ..'
                 pwd
                 ENVCOUNT=\$(./apictl list envs --format {{.}} | wc -l)
