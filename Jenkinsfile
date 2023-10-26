@@ -16,7 +16,7 @@ pipeline {
         stage('Setup Environment for APICTL') {
             steps {
                 sh """#!/bin/bash
-                sh 'cd /home/hamza/apictl/'
+                sh 'cd ..'
                 pwd
                 ENVCOUNT=\$(./apictl list envs --format {{.}} | wc -l)
                 if [ "\$ENVCOUNT" == "0" ]; then
