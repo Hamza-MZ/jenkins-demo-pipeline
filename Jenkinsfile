@@ -17,8 +17,9 @@ pipeline {
             steps {
                 sh """#!/bin/bash
                   pwd
-                
+                 whoami
                 sudo su
+                 whoami
                 cd /home/hamza/apictl
                 pwd
                 ENVCOUNT=\$(./apictl list envs --format {{.}} | wc -l)
