@@ -1,24 +1,25 @@
 pipeline {
+
     agent any
     environment { 
-        // Set the full path to the directory containing apictl
-        APIC_TOOL_DIR = "/root/apictl"
-        PATH = "${APIC_TOOL_DIR}:${PATH}"
+        PATH = "/root/apictl:$PATH"
     }
     options {
         buildDiscarder logRotator( 
-            daysToKeepStr: '16', 
-            numToKeepStr: '10'
-        )
+                    daysToKeepStr: '16', 
+                    numToKeepStr: '10'
+            )
     }
 
     stages {
+
         stage('Setup Environment for APICTL') {
             steps {
                 sh """#!/bin/bash
-                ENVCOUNT=\$(${APIC_TOOL_DIR}/apictl list envs --format {{.}} | wc -l)
+                pwd
+                ENVCOUNT=\$(apictl list envs --format {{.}} | wc -l)
                 if [ "\$ENVCOUNT" == "0" ]; then
-                    ${APIC_TOOL_DIR}/apictl add-env -e live --apim https://localhost:9447
+                    apictl add-env -e live --apim https://localhost:9447
                 fi
                 """
             }
@@ -27,8 +28,8 @@ pipeline {
         stage('Deploy APIs To "Live" Environment') {
             steps {
                 sh """
-                ${APIC_TOOL_DIR}/apictl login live -u admin -p admin
-                ${APIC_TOOL_DIR}/apictl vcs deploy -e live
+                apictl login live -u admin -p admin
+                apictl vcs deploy -e live
                 """
             }
         }
