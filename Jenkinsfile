@@ -18,6 +18,7 @@ pipeline {
                 sh """#!/bin/bash
                   pwd
                 cd ..
+                sudo su
                 pwd
                 ENVCOUNT=\$(./apictl list envs --format {{.}} | wc -l)
                 if [ "\$ENVCOUNT" == "0" ]; then
