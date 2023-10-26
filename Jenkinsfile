@@ -28,8 +28,7 @@ pipeline {
             steps {
                 sh """
                 apictl login live -u admin -p admin -k
-                apictl set --vcs-source-repo-path https://github.com/Hamza-MZ/jenkins-demo-pipeline
-                apictl vcs deploy -e live -k
+                apictl vcs deploy -e live
                 """
             }
         }
