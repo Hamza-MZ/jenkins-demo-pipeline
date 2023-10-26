@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh """#!/bin/bash
                   pwd
-                sh 'cd ..'
+                cd ..
                 pwd
                 ENVCOUNT=\$(./apictl list envs --format {{.}} | wc -l)
                 if [ "\$ENVCOUNT" == "0" ]; then
