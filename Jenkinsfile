@@ -15,7 +15,7 @@ pipeline {
 
         stage('Setup Environment for APICTL') {
             steps {
-                sh """#!/bin/bash
+                sh chmod +x """#!/bin/bash
                   pwd
                  whoami
                 sudo su
