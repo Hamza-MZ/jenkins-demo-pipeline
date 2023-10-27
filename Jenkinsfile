@@ -28,7 +28,7 @@ pipeline {
             steps {
                 sh """
                 apictl login live -u admin -p admin -k
-                apictl set --vcs-source-repo-path /home/hamza/projects/jenkins
+                apictl set --vcs-source-repo-path /var/lib/jenkins/workspace/APIM-CICD-Pipeline
                 apictl vcs deploy -e live -k
                 """
             }
