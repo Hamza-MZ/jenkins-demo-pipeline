@@ -18,7 +18,7 @@ pipeline {
                 sh """#!/bin/bash
                 ENVCOUNT=\$(./apictl list envs --format {{.}} | wc -l)
                 if [ "\$ENVCOUNT" == "0" ]; then
-                    apictl add-env -e live --apim https://172.20.138.214:9447
+                    apictl add-env -e live --apim https://172.20.138.214:9443
                 fi
                 """
             }
